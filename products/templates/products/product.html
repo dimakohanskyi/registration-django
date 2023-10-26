@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+    <title>{{ title  }}</title>
+
+
+
+{% block style %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/base_css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/products_css/products.css' %}">
+    {% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+<body>
+
+<h2>Product Page</h2>
+
+<div class="list-group">
+    <h2>Categories: </h2>
+{% for category in categories %}
+    <a href="{% url 'products:category' category.id %}">{{ category.name }}</a>
+    {% endfor  %}
+</div>
+
+<hr>
+
+
+<div class="product-row">
+    {% for product in object_list %}
+
+    <div class="col-md-3">
+        <div class="product-page-card">
+            <div class="product-card-body">
+                <img class="card-image" src="{{ product.image.url }}">
+                <h2 class="product-card-title text-center">{{ product.name }}</h2>
+                <p class="product-card-text text-center">{{ product.description  }}</p>
+                <h5 class="text-center">{{ product.price }}</h5>
+                <div class="product-btn">
+                    <a href="{% url 'products:basket_add' product.id %}">Add to busket</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+{% if  is_paginated %}
+<nav class="page-btn">
+
+    <ul>
+        <li class="page-item {% if not page_object.has_previous %} disabled {% endif %}">
+            <a  class="page-link"
+                href="{% if page_object.has_previous %} {% url 'products:paginator' page_object.previous_page_number %} {% else %} # {% endif %}"
+                tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+
+
+{% for page in paginator.page_range %}
+    <li>
+        <a href="{% url 'products:paginator' page %}">
+            {{  page }}
+        </a>
+    </li>
+{% endfor  %}
+
+        <li class="page-item {% if not page_object.has_next %} disabled {% endif %}">
+            <a class="page-link"
+               href="{% if page_object.has_next %} {% url 'products:paginator' page_object.next_page_number %}  {% else %} # {% endif %}">Next</a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+
+
+</body>
+
+{% endblock %}

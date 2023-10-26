@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block style%}    {% endblock %}
+</head>
+
+
+
+<body>
+
+
+<nav class="main-nav">
+              <div class="container">
+                  <ul class="navbar-nav1">
+                      <li class="nav-item"><a href="{% url 'users:home' %}">Home</a></li>
+                      <li class="nav-item"><a href="{% url 'products:products' %}">Product</a></li>
+                      <li class="nav-item"><a href="{% url 'products:basket' %}">Basket</a></li>
+                      <li class="nav-item"><a href="{% url 'users:profile' %}">Profile</a></li>
+                      <li class="nav-item"><a href="{% url 'users:register' %}">Register</a></li>
+                      <li class="nav-item"><a href="{% url 'users:login' %}">LogIN</a></li>
+                      <li class="nav-item"><a href="{% url 'users:logout' %}" >Logout</a></li>
+                  </ul>
+            </div>
+          </nav>
+<hr>
+
+{% block content %}
+
+
+{% endblock %}
+
+</body>
+</html>

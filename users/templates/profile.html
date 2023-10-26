@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+<hr>
+<a href="{% url 'products:basket' %}">Basket</a>
+<br>
+<br>
+<br>
+
+
+
+
+{% if  user.is_authenticated %}
+
+    <div class="profile-info">
+        <div class="user-name-block">
+                    <label>Username: </label>
+            {{ username }}
+        </div>
+    <br>
+
+        <div class="email-block">
+            <label>Email:  </label>
+            {{ email }}
+        </div>
+
+    </div>
+<hr>
+<div class="basket-section">
+    <h2>Basket</h2>
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+</body>
+</html>

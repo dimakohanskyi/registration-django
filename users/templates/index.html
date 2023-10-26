@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+    {% load static %}
+
+
+    {% block style%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index_css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/base_css/base.css' %}">
+{% endblock %}
+
+
+
+    <title>Title</title>
+
+
+
+
+
+{% block content %}
+
+<body>
+
+
+
+
+<h1>Main Page</h1>
+
+<hr>
+
+
+{% if  user.is_authenticated %}
+                    <h2>You are true auth pidarok</h2>
+            {%  else %}
+                    <h2>You are fucking skinny bich</h2>
+{% endif %}
+
+
+
+
+</body>
+{% endblock %}
